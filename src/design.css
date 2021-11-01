@@ -1,0 +1,13 @@
+
+.inputBox{
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    justify-content: space-between;
+    text-decoration: solid;
+}
+.container{ border: 25px;
+    
+        padding: 30px;
+        background-color: rgb(230, 240, 97);
+      }
