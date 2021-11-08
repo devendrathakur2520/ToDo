@@ -3,16 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 //import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ToDo from './Todo';
-//import Demo from './Demo';
+//import UseHooks from './hooks';
+//import HooksCounter from './HooksCounter';
+import UsingRouter from './Rauting';
+
+
 //import Form from './form';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 ReactDOM.render(
   <React.StrictMode>
-   <div className="container">
-  <ToDo/></div>
-  </React.StrictMode>,
-  
+ 
+  <UsingRouter/>
+  </React.StrictMode>
+ ,
   document.getElementById('root')
 );
 

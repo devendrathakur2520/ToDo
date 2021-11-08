@@ -1,51 +1,78 @@
-import React from "react";
-import ShowList from './showList';
-import Button from 'react-bootstrap/Button';
-import './design.css';
+import React from 'react';
+import TodoForm from './TodoForm';
+import TodoList from './TodoList';
 
-export default class ToDo extends React.Component {
-    state = {  Discription: "", list: [] };
-    handleChange = (event) => {
-        this.setState({ Discription: event.target.value })
-    };
+export default class Todo extends React.Component {
+  initialTodo = { title: '', description: '' };
 
-    AddHandler = (event) => {
-        if (this.state.Discription !== "") {
-            const list = [...this.state.list, this.state.Discription];
-            this.setState({ list: list ,Discription:''});
-        }
-    } 
-   
-    DeletItem= (id) => {
-        console.log("delet");
-        const oldList = [...this.state.list];
-        const list=oldList.filter((element,i) => {return i!==id})
-        this.setState({ list: list})
+  constructor () {
+    super();
+    this.state = {
+      todo: this.initialTodo,
+      todos: [],
+      updatingTodoIndex: null,
     }
+  }
 
-    EditData= (id) => {
-        const EditData=[...this.list]
-        console.log(EditData)
-    }
-    render() {
-        return (
-            <form key={this.i}>
-                <div className="inputBox">
-                <div >
-                   <h1> My ToDo</h1>
-                    Description:<br/>
-                    <input type="textarea" height="100" width="100" name="Discription" value={this.state.Discription} onChange={this.handleChange} />
-                </div>
-                   <br/> <Button type="button" variant="success" onClick={this.AddHandler}>Add</Button><br />
-                        <p>list items</p>
-                    {
-                        this.state.list.map((value, i) => { return <ShowList key={i} value={value} id={i} sendData={this.DeletItem} EditData={this.EditData}/> })
-                        //<ShowList value={this.state.list}/>
-                      
-                    }
-                </div>
-            </form>
+  
+  handleChangeInput = (event) => {
+    const { name, value } = event.target;
+    const todo = { ...this.state.todo, [name]: value };
+    this.setState({ todo });
+  }
 
-        )
+  handleSubmitForm = (event) => {
+    event.preventDefault();
+    const { todo, updatingTodoIndex } = this.state;
+    if (!todo.title) return;
+    const todos = [...this.state.todos];
+    if (!updatingTodoIndex && updatingTodoIndex !== 0) {
+      todos.push({ ...todo, id: new Date().getTime() });
+    } else {
+      todos[updatingTodoIndex] = { ...todo };
     }
+    this.setState({
+      todos,
+      todo: this.initialTodo,
+      updatingTodoIndex: null,
+    });
+  }
+
+  handleDelete = (todoId) => {
+    const newTodosArray = this.state.todos.filter((todo) => todo.id !== todoId);
+    this.setState({ todos: newTodosArray });
+  }
+
+  handleEdit = (todoId) => {
+    const todoIndex = this.state.todos.findIndex((todo) => todo.id === todoId);
+    const todo = { ...this.state.todos[todoIndex] };
+    this.setState({ todo, updatingTodoIndex: todoIndex });
+  }
+
+  handleComplete = (event, todoId) => {
+    const newTodosArray = this.state.todos.map((todo) => {
+      if (todo.id !== todoId) return todo;
+      return { ...todo, completed: event.target.checked };
+    });
+    this.setState({ todos: newTodosArray });
+  }
+
+  render () {
+    return (
+      <div>
+        <TodoForm
+          todo={this.state.todo}
+          updatingTodoIndex={this.state.updatingTodoIndex}
+          handleSubmit={this.handleSubmitForm}
+          handleChangeInput={this.handleChangeInput}
+        />
+        <TodoList
+          todos={this.state.todos}
+          handleDelete={this.handleDelete}
+          handleEdit={this.handleEdit}
+          handleComplete={this.handleComplete}
+        />
+      </div>
+    );
+  }
 }
