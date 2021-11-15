@@ -1,18 +1,33 @@
 import React,{useState ,useEffect} from 'react';
 import axios from 'axios';
-
+import {useParams} from 'react-router-dom';
 export default function Posts (){
+   const  {id}=useParams();
     const [Posts,setPosts]=useState([]);
+    
     useEffect(()=>{
-        axios.get("http://localhost:3008/posts").then((response)=>{console.log(response)
-    setPosts(response.data);});
+        loadUsers();
        
-    })
+    },)
+    const loadUsers=async ()=>{
+        await axios.get(`http://localhost:3008/users/${id}/posts`).then((response)=>{
+            
+                setPosts(response.data);});
+    }
     return(
         <>
-                <p>{Posts.map(posts=>
-        (<li key={posts.id}>{posts.userId}</li>))}</p>
-        
+        <div>
+            <div>
+                <ul>
+                    {Posts.map((posts) =>(
+                        <li key={posts.id}>id:{posts.userId}
+                       <li>title:{posts.title}</li>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+            
         </>
     ) 
 

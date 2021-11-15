@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import App from './App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 //import UseHooks from './hooks';
 //import HooksCounter from './HooksCounter';
-import UsingRouter from './Rauting';
-
-
+//import UsingRouter from './Rauting';
+//import Reduce from './reduce.js';
+//import Purecomponents from './pureComponents.js'
 //import Form from './form';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 ReactDOM.render(
   <React.StrictMode>
- 
-  <UsingRouter/>
+ <App/>
+  
   </React.StrictMode>
  ,
   document.getElementById('root')
