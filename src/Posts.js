@@ -1,6 +1,7 @@
 import React,{useState ,useEffect} from 'react';
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
+import { Link  } from 'react-router-dom'
 export default function Posts (){
    const  {id}=useParams();
     const [Posts,setPosts]=useState([]);
@@ -22,6 +23,7 @@ export default function Posts (){
                     {Posts.map((posts) =>(
                         <li key={posts.id}>id:{posts.userId}
                        <li>title:{posts.title}</li>
+                       <Link className="btn btn-primary" to={`/Comments/${posts.id}`}>ViewComments</Link>
                         </li>
                     ))}
                 </ul>

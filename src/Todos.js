@@ -12,7 +12,7 @@ export default function Todos (){
     return(
         <>
             <p>{Todos.map(todos=>
-        (<li key={todos.id}>{todos.title}</li>))}</p>
+        (<li key={todos.id}>id:{todos.id}<li>title:{todos.title}</li></li>))}</p>
         
         </>
     ) 

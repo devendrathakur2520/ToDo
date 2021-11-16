@@ -4,7 +4,7 @@ import {useHistory,useParams} from 'react-router-dom'
 
 const Edit=()=>{
     let history=useHistory();
-    let {id}=useParams
+    let {id}=useParams()
     const [newUsers,setnewUsers] = useState(
         {
             name:"",
@@ -25,7 +25,8 @@ const Edit=()=>{
                 console.log(response.data)
              })
             
-        });
+        },[]);
+        
 
          const onSubmit= async (e)=>{
             e.preventDefault();

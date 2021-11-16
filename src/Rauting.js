@@ -34,10 +34,6 @@ export default function UsingRouter() {
                         </li>
                         </ul>
                             <Link to='AddUsers.js'>AddUsers</Link>
-                       
-
-
-                   
 
                 </nav>
                 <Switch>
@@ -60,10 +56,12 @@ export default function UsingRouter() {
                     <Route exact path='/AddUsers.js'>
                         <AddUsers />
                     </Route>
-                    <Route path="/Edit/:id">
+                    <Route path='/Edit/:id'>
                         <Edit />
                     </Route>
-        
+                    <Route path='/Comments/:id'>
+                        <Comments />
+                    </Route>
 
                 </Switch>
 

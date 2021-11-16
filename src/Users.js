@@ -51,7 +51,7 @@ export default function Users() {
                             <td>{users.name}</td>
                             <td>{users.email}</td>
                             <Link  className="btn btn-primary" to={`/Posts/${users.id}`}>View Post</Link>
-                            <Link className="btn btn-primary" to={`/Todo/${users.id}`}>ViewTodo</Link>
+                            <Link className="btn btn-primary" to={`/Todos/${users.id}`}>ViewTodo</Link>
                             
                             <Link className="btn btn-primary" to={`/Edit/${users.id}`}>Edit</Link>
                             
