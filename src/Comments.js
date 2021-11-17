@@ -12,7 +12,9 @@ export default function Users (){
 
     const loadUsers=async()=>{
        const results= await axios.get(`http://localhost:3008/posts/${id}/comments`);
-           setComments(results.data);}    
+       console.log(results);    
+       setComments(results.data);}   
+            
 
     return(
         <>

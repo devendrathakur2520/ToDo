@@ -1,19 +1,24 @@
-import React,{useState ,useEffect} from 'react';
+import React,{ useEffect} from 'react';
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
 import { Link  } from 'react-router-dom'
+import {useDispatch,useSelector} from 'react-redux'
+import {getPost} from './action/index.js'
 export default function Posts (){
    const  {id}=useParams();
-    const [Posts,setPosts]=useState([]);
+   // const [Posts,setPosts]=useState([]);
     
+    const dispatch = useDispatch();
+    const Posts=useSelector((state)=> state.posts.post)
+
     useEffect(()=>{
         loadUsers();
        
     },)
     const loadUsers=async ()=>{
-        await axios.get(`http://localhost:3008/users/${id}/posts`).then((response)=>{
-            
-                setPosts(response.data);});
+        const result=await axios.get(`http://localhost:3008/users/${id}/posts`);
+            dispatch(getPost(result.data))
+        
     }
     return(
         <>

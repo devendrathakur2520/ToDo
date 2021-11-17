@@ -1,18 +1,36 @@
-import React,{useState ,useEffect} from 'react';
+import React,{useEffect} from 'react';
 import axios from 'axios';
 import {useParams} from 'react-router-dom'
+import {getTodo} from './action/index.js';
+import {useSelector,useDispatch} from 'react-redux'
+
 export default function Todos (){
     const {id}=useParams();
-    const [Todos,setTodos]=useState([]);
+  
+   const viewTodo= useSelector((state) => state.todos.todo)
+   const dispatch=useDispatch();
+    //const [Todos,setTodos]=useState([]);
     useEffect(()=>{
-        axios.get(`http://localhost:3008/users/${id}/todos`).then((response)=>{console.log(response)
-    setTodos(response.data);});
+       const result= axios.get(`http://localhost:3008/users/${id}/todos`);
+        dispatch(getTodo(result.data));});
       
-    })
+    
     return(
         <>
-            <p>{Todos.map(todos=>
-        (<li key={todos.id}>id:{todos.id}<li>title:{todos.title}</li></li>))}</p>
+            <div>
+            {viewTodo.map((todos)=>
+            (<li key={todos.id}>
+            id:{todos.id}<li>
+            title:{todos.title}
+                </li>
+            </li>))}
+            </div>
+
+
+
+
+
+        
         
         </>
     ) 

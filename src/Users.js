@@ -1,21 +1,27 @@
-import React, { useState, useEffect } from 'react';
-
+import React, {  useEffect } from 'react';
+import {useSelector,useDispatch} from 'react-redux'
 import axios from 'axios';
 import { Link  } from 'react-router-dom'
+import {getUser} from './action/index.js';
 
 //import {table} from 'react-bootstrap';
 
-export default function Users() {
-    const [Users, setUsers] = useState([]);
+export default function Users(props) {
+//const [Users, setUsers] = useState([]);
 
-   
+const users= useSelector((state) => state.users.user);
+
+const dispatch=useDispatch();
 
     useEffect(() => {
         loadUsers();
-        });
+        },[]);
+
         const loadUsers = async() => {
             const result = await axios.get("http://localhost:3008/users")
-            setUsers(result.data.reverse())
+           dispatch(getUser(result.data))
+        
+      
         }
 
        /* const editUsers = () => {
@@ -44,12 +50,13 @@ export default function Users() {
                 </thead>
                 
                     <tbody>
-                    {Users.map((users) => { return(
+                    {users.map((users) => { return(
                         <tr key={users.id}>
                             
                             <td> {users.id} </td>
                             <td>{users.name}</td>
                             <td>{users.email}</td>
+
                             <Link  className="btn btn-primary" to={`/Posts/${users.id}`}>View Post</Link>
                             <Link className="btn btn-primary" to={`/Todos/${users.id}`}>ViewTodo</Link>
                             
