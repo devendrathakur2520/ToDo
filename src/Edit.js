@@ -1,27 +1,31 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import {useHistory,useParams} from 'react-router-dom'
+import {editUser} from './action/index.js'
+import { useSelector,useDispatch } from 'react-redux';
 
 const Edit=()=>{
     let history=useHistory();
     let {id}=useParams()
-    const [newUsers,setnewUsers] = useState(
+  const editUsers=useSelector((state) => state.editUsers.edituser);
+  const dispatch=useDispatch();
+   /* const [newUsers,setnewUsers] = useState(
         {
             name:"",
             username:"",
             email:"",
             phone:""
 
-        })
-        const {name,username,email,phone}=newUsers;
+        })*/
+        const {name,username,email,phone}=editUsers;
        const onInputChange=(e)=>{
            //console.log(e.target.value)
-           setnewUsers({...newUsers,[e.target.name]: e.target.value});
+            dispatch(editUser({...editUsers,[e.target.name]: e.target.value}));
             
         }
         useEffect(()=>{
              axios.get(`http://localhost:3008/users/${id}`).then((response)=>{
-                setnewUsers(response.data);
+                dispatch(editUser(response.data));
                 console.log(response.data)
              })
             
@@ -30,7 +34,7 @@ const Edit=()=>{
 
          const onSubmit= async (e)=>{
             e.preventDefault();
-            await axios.put(`http://localhost:3008/users/${id}`,newUsers);
+            await axios.put(`http://localhost:3008/users/${id}`,editUsers);
             
            history.push('/Users');
             

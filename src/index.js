@@ -11,7 +11,7 @@ import {Provider} from 'react-redux';
 //import Reduce from './reduce.js';
 //import Purecomponents from './pureComponents.js'
 //import Form from './form';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 ReactDOM.render(
   <React.StrictMode>
   <Provider store= {store}>

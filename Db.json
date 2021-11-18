@@ -231,10 +231,10 @@
       }
     },
     {
-      "name": "sfgsga",
-      "username": "sags",
-      "email": "asgas",
-      "phone": "asgasg",
+      "name": "nitendra",
+      "username": "thakur",
+      "email": "nitendra@gmail.com",
+      "phone": "7389508279",
       "id": 11
     },
     {
@@ -250,6 +250,20 @@
       "email": "thakur@gmail.com",
       "phone": "8966966011",
       "id": 13
+    },
+    {
+      "name": "Rajput ",
+      "username": "Thakur",
+      "email": "thakur@gmail.com",
+      "phone": "8966966011",
+      "id": 14
+    },
+    {
+      "name": "Rohit ",
+      "username": "Barche",
+      "email": "rohit@gmail.com",
+      "phone": "25331341.0.",
+      "id": 15
     }
   ],
   "todos": [

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Switch, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import {Switch} from 'react-router-dom;'
 import Users from './Users'
 import Posts from './Posts';
 import Todos from './Todos.js'

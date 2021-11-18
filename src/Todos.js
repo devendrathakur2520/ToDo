@@ -11,9 +11,12 @@ export default function Todos (){
    const dispatch=useDispatch();
     //const [Todos,setTodos]=useState([]);
     useEffect(()=>{
-       const result= axios.get(`http://localhost:3008/users/${id}/todos`);
-        dispatch(getTodo(result.data));});
-      
+                    loadTodos();
+                  })
+
+    const loadTodos=async ()=>{
+        const result=await axios.get(`http://localhost:3008/users/${id}/todos`);
+              dispatch(getTodo(result.data))}
     
     return(
         <>

@@ -1,10 +1,13 @@
-import React,{useState ,useEffect} from 'react';
+import React,{useEffect} from 'react';
 import axios from 'axios';
 import {useParams} from 'react-router-dom'
-
+import {useSelector,useDispatch} from 'react-redux'
+import { getComments } from './action/index.js';
 export default function Users (){
    const  {id}=useParams();
-    const [Comments,setComments]=useState([]);
+   const  viewComments=useSelector((state) => state.comments.comment)
+   const  dispatch=useDispatch();
+    //const [Comments,setComments]=useState([]);
     useEffect(()=>{
         
        loadUsers();
@@ -13,13 +16,13 @@ export default function Users (){
     const loadUsers=async()=>{
        const results= await axios.get(`http://localhost:3008/posts/${id}/comments`);
        console.log(results);    
-       setComments(results.data);}   
+       dispatch(getComments(results.data));}   
             
 
     return(
         <>
             <div>
-                <p>{Comments.map(comments =>
+                <p>{viewComments.map(comments =>
                 (<li key={comments.id}>
                 <li>{comments.id}</li>
                 <li>{comments.email}</li></li>))}</p>

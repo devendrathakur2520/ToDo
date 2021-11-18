@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link  } from 'react-router-dom'
 import {getUser} from './action/index.js';
 
-//import {table} from 'react-bootstrap';
+
 
 export default function Users(props) {
 //const [Users, setUsers] = useState([]);
